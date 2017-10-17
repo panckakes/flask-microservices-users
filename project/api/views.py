@@ -4,12 +4,21 @@
 from flask import Blueprint, jsonify, request, make_response, render_template
 from sqlalchemy import exc
 
-from project.api.models import User
+from project.api.models import User, Bluetooth
 from project import db
 
 
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 
+# @users_blueprint.route('/', methods=['GET', 'POST'])
+# def index():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         email = request.form['email']
+#         db.session.add(User(username=username, email=email))
+#         db.session.commit()
+#     users = User.query.order_by(User.created_at.desc()).all()
+#     return render_template('index.html', users=users)
 
 @users_blueprint.route('/ping', methods=['GET'])
 def ping_pong():
@@ -36,8 +45,8 @@ def add_user():
             db.session.add(User(username=username, email=email))
             db.session.commit()
             response_object = {
-                'status': 'success',
-                'message': f'{email} was added!'
+                'status': 'success'
+                # 'message': f'{email} was added!'
             }
             return make_response(jsonify(response_object)), 201
         else:
@@ -97,6 +106,26 @@ def get_all_users():
         'status': 'success',
         'data': {
           'users': users_list
+        }
+    }
+    return make_response(jsonify(response_object)), 200
+
+@app.route('/bluetooth', methods=['GET'])
+def get_all_bluetooth_devices():
+    """Get all bluetooth devices"""
+    bluetooths = Bluetooth.query.order_by(Bluetooth.created_at.desc()).all()
+    bluetooth_list []
+    for bluetooth in bluetooths:
+        bluetooth_object = {
+            'name': bluetooth.name,
+            'address': bluetooth.address,
+            'created_at': bluetooth.created_at
+        }
+        bluetooth_list.append(bluetooth_object)
+    response_object = {
+        'status': 'success',
+        'data': {
+            'bluetooths': bluetooth_list
         }
     }
     return make_response(jsonify(response_object)), 200

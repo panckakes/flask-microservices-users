@@ -18,3 +18,9 @@ class User(db.Model):
         self.username = username
         self.email = email
         self.created_at = created_at
+
+class Bluetooth(db.Model)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(128), nullable=False)
+    address = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)

@@ -63,6 +63,8 @@ def seed_db():
     """Seeds the database."""
     db.session.add(User(username='michael', email="michael@realpython.com"))
     db.session.add(User(username='michaelherman', email="michael@mherman.org"))
+    db.session.add(Bluetooth(name='michaels_iphone', address="00:11:22:33:FF:EE"))
+    db.session.add(Bluetooth(name='michaels_other_iphone', address="04:64:22:DE:AC:EE"))
     db.session.commit()
 
 
