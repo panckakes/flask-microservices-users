@@ -115,7 +115,7 @@ def get_all_users():
 def get_all_bluetooth_devices():
     """Get all bluetooth devices"""
     bluetooths = Bluetooth.query.order_by(Bluetooth.created_at.desc()).all()
-    bluetooth_list []
+    bluetooth_list = []
     for bluetooth in bluetooths:
         bluetooth_object = {
             'name': bluetooth.name,
