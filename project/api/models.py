@@ -19,8 +19,23 @@ class User(db.Model):
         self.email = email
         self.created_at = created_at
 
-class Bluetooth(db.Model)
+class Bluetooth(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(128), nullable=False)
     address = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, name, address, created_at=datetime.datetime.now()):
+        self.name = name
+        self.address = address
+        self.created_at = created_at
+
+class NavioTemperature(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    temp = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, temp, created_at=datetime.datetime.now()):
+        self.temp = temp
+        self.address = address
+        self.created_at = created_at

@@ -9,6 +9,7 @@ from project import db
 
 
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
+bluetooth_blueprint = Blueprint('users', __name__, template_folder='./templates')
 
 # @users_blueprint.route('/', methods=['GET', 'POST'])
 # def index():
@@ -110,7 +111,7 @@ def get_all_users():
     }
     return make_response(jsonify(response_object)), 200
 
-@app.route('/bluetooth', methods=['GET'])
+@bluetooth_blueprint.route('/bluetooth', methods=['GET'])
 def get_all_bluetooth_devices():
     """Get all bluetooth devices"""
     bluetooths = Bluetooth.query.order_by(Bluetooth.created_at.desc()).all()

@@ -7,7 +7,7 @@ import coverage
 from flask_script import Manager
 
 from project import create_app, db
-from project.api.models import User
+from project.api.models import User, Bluetooth
 
 
 COV = coverage.coverage(
